@@ -7,7 +7,9 @@ on:
         required: true
         type: string
 permissions:
-  contents: read
+  # GitHub requires write permission to retrieve an unpublished draft asset.
+  # The job only reads it; it never publishes the private source archive.
+  contents: write
 jobs:
   build:
     runs-on: macos-15-intel
