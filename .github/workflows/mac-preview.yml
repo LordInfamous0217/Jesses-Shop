@@ -29,10 +29,12 @@ jobs:
           ditto -x -k /tmp/third-earth-source.zip /tmp/third-earth-mac
       - name: Build native Intel and Apple Silicon app
         run: bash /tmp/third-earth-mac/mac/build-mac.sh
+      - name: Check Mac screens and receipt pagination in isolation
+        run: dotnet test /tmp/third-earth-mac/tests/ThirdEarth.RepairManager.MacUiTests/ThirdEarth.RepairManager.MacUiTests.csproj -c Release --logger trx --results-directory /tmp/third-earth-mac/test-results
       - name: Upload universal app
         uses: actions/upload-artifact@v4
         with:
           name: ThirdEarth-Mac-universal-preview
-          path: /tmp/third-earth-mac/dist/mac/ThirdEarthRepairManager-Mac-1.7.0-preview.1-universal.zip
+          path: /tmp/third-earth-mac/dist/mac/ThirdEarthRepairManager-Mac-*-universal.zip
           if-no-files-found: error
           retention-days: 7
