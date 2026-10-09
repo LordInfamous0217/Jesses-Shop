@@ -1,0 +1,36 @@
+name: Build Mac compatibility preview
+on:
+  workflow_dispatch:
+    inputs:
+      source_asset:
+        description: Private draft release source-archive asset ID
+        required: true
+        type: string
+permissions:
+  contents: read
+jobs:
+  build:
+    runs-on: macos-15-intel
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-dotnet@v5
+        with:
+          dotnet-version: '10.0.302'
+      - name: Download private build input
+        env:
+          GH_TOKEN: ${{ github.token }}
+          SOURCE_ASSET: ${{ inputs.source_asset }}
+        run: |
+          gh api "repos/${GITHUB_REPOSITORY}/releases/assets/${SOURCE_ASSET}" -H 'Accept: application/octet-stream' > /tmp/third-earth-source.zip
+          mkdir -p /tmp/third-earth-mac
+          ditto -x -k /tmp/third-earth-source.zip /tmp/third-earth-mac
+      - name: Build native Intel and Apple Silicon app
+        run: bash /tmp/third-earth-mac/mac/build-mac.sh
+      - name: Upload universal app
+        uses: actions/upload-artifact@v4
+        with:
+          name: ThirdEarth-Mac-universal-preview
+          path: /tmp/third-earth-mac/dist/mac/ThirdEarthRepairManager-Mac-1.7.0-preview.1-universal.zip
+          if-no-files-found: error
+          retention-days: 7
