@@ -36,4 +36,4 @@ copy, attempts a cloud backup, then closes for installation and reopening.
 Save unfinished work first. If the older 1.7.0 Mac preview gets stuck closing
 for an update, replace it manually with the 1.7.2 ZIP; the fix is included here.
 
-Developer support: Cameron Rodriguez — 361-267-5088.
+For help, use the Support tab inside the app.
