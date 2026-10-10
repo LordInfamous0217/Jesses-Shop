@@ -4,12 +4,12 @@ Third Earth Surfboards Repair Manager — repair intake, customer records,
 employee work logs and payment bookkeeping. Payments and refunds are processed
 outside this software, such as through Square.
 
-## Windows download — version 1.9.0
+## Windows download — version 1.9.1
 
-- [Windows installer](https://github.com/LordInfamous0217/Jesses-Shop/releases/download/v1.9.0/ThirdEarthRepairManager-Setup-1.9.0.exe)
-- [Release notes](https://github.com/LordInfamous0217/Jesses-Shop/releases/tag/v1.9.0)
+- [Windows installer](https://github.com/LordInfamous0217/Jesses-Shop/releases/download/v1.9.1/ThirdEarthRepairManager-Setup-1.9.1.exe)
+- [Release notes](https://github.com/LordInfamous0217/Jesses-Shop/releases/tag/v1.9.1)
 
-Version 1.9.0 adds Administrator right-click repair-catalog removal, manual
+Version 1.9.1 adds Administrator right-click repair-catalog removal, manual
 merchandise inventory, customer-prefilled Start Sale, immutable logo-branded
 merchandise receipts and shared/offline stock bookkeeping. In Merchandise,
 search goods on the left and record the sale only after payment is handled
@@ -24,7 +24,7 @@ before database initialization; an existing database is not replaced with a clou
 snapshot merely because the version changed.
 
 The existing private shop Worker keeps backward-compatible repair/customer feeds.
-Upgrade all working PCs to 1.9.0 before using new catalog/sales features; finish
+Upgrade all working PCs to 1.9.1 before using new catalog/sales features; finish
 one online startup to download merchandise metadata for offline saving. Already
 connected PCs retain their connection. New PCs must join and download shop records online first.
 Waiting or conflicting saves remain under Today → Sync Queue; never re-enter a
