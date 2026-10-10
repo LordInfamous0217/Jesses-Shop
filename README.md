@@ -4,10 +4,17 @@ Third Earth Surfboards Repair Manager — repair intake, customer records,
 employee work logs and payment bookkeeping. Payments and refunds are processed
 outside this software, such as through Square.
 
-## Windows download — version 1.8.0
+## Windows download — version 1.9.0
 
-- [Windows installer](https://github.com/LordInfamous0217/Jesses-Shop/releases/download/v1.8.0/ThirdEarthRepairManager-Setup-1.8.0.exe)
-- [Release notes](https://github.com/LordInfamous0217/Jesses-Shop/releases/tag/v1.8.0)
+- [Windows installer](https://github.com/LordInfamous0217/Jesses-Shop/releases/download/v1.9.0/ThirdEarthRepairManager-Setup-1.9.0.exe)
+- [Release notes](https://github.com/LordInfamous0217/Jesses-Shop/releases/tag/v1.9.0)
+
+Version 1.9.0 adds Administrator right-click repair-catalog removal, manual
+merchandise inventory, customer-prefilled Start Sale, immutable logo-branded
+merchandise receipts and shared/offline stock bookkeeping. In Merchandise,
+search goods on the left and record the sale only after payment is handled
+outside this app. Saved customer/repair records and old receipts are preserved.
+Administrators manage stock and discounts; employees can sell and raise prices.
 
 The normal field installer preserves the existing 1.7.2 repair workflow and data
 location. It adds durable offline shared saves, Today/work tracking, appointments,
@@ -16,18 +23,23 @@ subdued point-break wave texture. Updates create verified local recovery archive
 before database initialization; an existing database is not replaced with a cloud
 snapshot merely because the version changed.
 
-The existing private shop Worker is backward-compatible with 1.7.2. Already
-connected PCs retain their connection; complete one online startup on 1.8.0 to
-enable offline saving. New PCs must join and download shop records online first.
+The existing private shop Worker keeps backward-compatible repair/customer feeds.
+Upgrade all working PCs to 1.9.0 before using new catalog/sales features; finish
+one online startup to download merchandise metadata for offline saving. Already
+connected PCs retain their connection. New PCs must join and download shop records online first.
 Waiting or conflicting saves remain under Today → Sync Queue; never re-enter a
 payment because an acknowledgment is delayed. Actual payments are still processed
 outside the app. Wireless printers require a working Windows-installed queue/driver.
 
-This release passed 120 Windows automated tests and Worker isolation tests. Actual
+Offline stock is provisional. Concurrent sales remain in the ledger; a shortage
+warning prompts an Administrator to count physical stock. Inventory conflicts
+remain under Today → Sync Queue for explicit review after a recovery archive.
+
+This release passed 129 Windows automated tests and Worker isolation tests. Actual
 shop printers and field hardware still need a hands-on test. The same normal
 installer is used for testing and field installation; no isolated data mode is forced.
 
-## Previous Mac previews — no 1.8.0 Mac update
+## Previous Mac previews — no new Mac update
 
 - [Previous 1.7.2 Mac compatibility preview](https://github.com/LordInfamous0217/Jesses-Shop/releases/download/v1.7.2/ThirdEarthRepairManager-Mac-1.7.2-universal.zip)
 
