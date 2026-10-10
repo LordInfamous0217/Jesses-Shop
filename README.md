@@ -4,11 +4,32 @@ Third Earth Surfboards Repair Manager — repair intake, customer records,
 employee work logs and payment bookkeeping. Payments and refunds are processed
 outside this software, such as through Square.
 
-## Downloads — version 1.7.2
+## Windows download — version 1.8.0
 
-- [Windows installer](https://github.com/LordInfamous0217/Jesses-Shop/releases/download/v1.7.2/ThirdEarthRepairManager-Setup-1.7.2.exe)
-- [Universal Mac app — compatibility preview](https://github.com/LordInfamous0217/Jesses-Shop/releases/download/v1.7.2/ThirdEarthRepairManager-Mac-1.7.2-universal.zip)
-- [Release notes](https://github.com/LordInfamous0217/Jesses-Shop/releases/tag/v1.7.2)
+- [Windows installer](https://github.com/LordInfamous0217/Jesses-Shop/releases/download/v1.8.0/ThirdEarthRepairManager-Setup-1.8.0.exe)
+- [Release notes](https://github.com/LordInfamous0217/Jesses-Shop/releases/tag/v1.8.0)
+
+The normal field installer preserves the existing 1.7.2 repair workflow and data
+location. It adds durable offline shared saves, Today/work tracking, appointments,
+bookkeeping reports, per-PC Letter/A4 printer setup, Administrator audit and a
+subdued point-break wave texture. Updates create verified local recovery archives
+before database initialization; an existing database is not replaced with a cloud
+snapshot merely because the version changed.
+
+The existing private shop Worker is backward-compatible with 1.7.2. Already
+connected PCs retain their connection; complete one online startup on 1.8.0 to
+enable offline saving. New PCs must join and download shop records online first.
+Waiting or conflicting saves remain under Today → Sync Queue; never re-enter a
+payment because an acknowledgment is delayed. Actual payments are still processed
+outside the app. Wireless printers require a working Windows-installed queue/driver.
+
+This release passed 120 Windows automated tests and Worker isolation tests. Actual
+shop printers and field hardware still need a hands-on test. The same normal
+installer is used for testing and field installation; no isolated data mode is forced.
+
+## Previous Mac previews — no 1.8.0 Mac update
+
+- [Previous 1.7.2 Mac compatibility preview](https://github.com/LordInfamous0217/Jesses-Shop/releases/download/v1.7.2/ThirdEarthRepairManager-Mac-1.7.2-universal.zip)
 
 ## Mac Monterey beta — 1.7.3 beta 1
 
@@ -18,8 +39,8 @@ outside this software, such as through Square.
 This separate beta targets macOS 12 Monterey and later, audits bundled native
 minimum OS requirements, uses software rendering on Monterey, and fixes
 original-ticket preservation for local-only repair intake. Install it manually
-for testing; stable update checks do not offer prereleases. Windows 1.7.2 is
-unchanged. Tests on newer Mac hosts cannot prove operation on a real Monterey
+for testing; stable update checks do not offer prereleases. Mac development is
+currently out of scope. Tests on newer Mac hosts cannot prove operation on a real Monterey
 computer; the office Mac Pro still needs a hardware test.
 
 The Mac download contains Intel and Apple Silicon backends in one application.
