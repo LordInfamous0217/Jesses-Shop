@@ -44,3 +44,54 @@ jobs:
           path: /tmp/third-earth-mac/dist/mac/ThirdEarthRepairManager-Mac-*-universal.zip
           if-no-files-found: error
           retention-days: 7
+      - name: Retain beta test results and native audit
+        uses: actions/upload-artifact@v4
+        with:
+          name: ThirdEarth-Mac-Intel-beta-checks
+          path: |
+            /tmp/third-earth-mac/test-results
+            /tmp/third-earth-mac/dist/mac/Third Earth Repair Manager.app/Contents/Resources/Monterey-Compatibility.txt
+          if-no-files-found: error
+          retention-days: 7
+  test-apple-silicon:
+    needs: build
+    runs-on: macos-15
+    timeout-minutes: 15
+    steps:
+      - uses: actions/setup-dotnet@v5
+        with:
+          dotnet-version: '10.0.302'
+      - name: Require native Apple Silicon execution
+        run: test "$(uname -m)" = arm64
+      - uses: actions/download-artifact@v4
+        with:
+          name: ThirdEarth-Mac-universal-preview
+          path: /tmp/third-earth-package
+      - name: Check the actual published-candidate ARM backend
+        run: |
+          mkdir /tmp/third-earth-arm-app
+          ditto -x -k /tmp/third-earth-package/ThirdEarthRepairManager-Mac-*-universal.zip /tmp/third-earth-arm-app
+          app='/tmp/third-earth-arm-app/Third Earth Repair Manager.app'
+          codesign --verify --deep --strict "$app"
+          "$app/Contents/MacOS/ThirdEarthLauncher" --package-build-check
+          "$app/Contents/MacOS/ThirdEarthLauncher" --beta-ui-check
+      - name: Download isolated test source
+        env:
+          GH_TOKEN: ${{ github.token }}
+          SOURCE_ASSET: ${{ inputs.source_asset }}
+        run: |
+          gh api "repos/${GITHUB_REPOSITORY}/releases/assets/${SOURCE_ASSET}" -H 'Accept: application/octet-stream' > /tmp/third-earth-source.zip
+          mkdir -p /tmp/third-earth-mac
+          ditto -x -k /tmp/third-earth-source.zip /tmp/third-earth-mac
+      - name: Run workflow and UI checks natively on Apple Silicon
+        run: |
+          cd /private/tmp/third-earth-mac
+          dotnet test tests/ThirdEarth.RepairManager.MacUiTests/ThirdEarth.RepairManager.MacUiTests.csproj -c Release --logger trx --results-directory test-results
+      - name: Retain Apple Silicon test results
+        uses: actions/upload-artifact@v4
+        with:
+          name: ThirdEarth-Mac-AppleSilicon-beta-checks
+          path: |
+            /tmp/third-earth-mac/test-results
+          if-no-files-found: error
+          retention-days: 7
